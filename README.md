@@ -9,6 +9,9 @@ a swipe control for openalyers2 |  卷帘控件
   swipe.activate(layer);     //激活控件,传layer指定上层被clip图层 
   swipe.deactivate();   //控件失效
 ```
+#### Preview:
+![预览图](https://github.com/laokey/ol2_swipe/blob/master/example/img/swipe.jpg)
+
 
 
 
