@@ -1,0 +1,108 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>OpenLayers2 Swipe Example</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+
+    <script src="js/OpenLayers.js"></script>
+    <script src="js/OpenLayers-swipe.js"></script>
+</head>
+
+<body>
+    <div class='map' id='map'></div>
+    <style>
+        /* layerSwipe */
+
+        .olControlSwipe {
+            background-color: red;
+            width: 5x;
+            height: 100%;
+            display: none;
+        }
+
+        .olControlSwipeHover {
+            cursor: w-resize;
+        }
+
+        .olControlSwipeLayerView {
+            background-color: white;
+            height: 16px;
+            width: 220px;
+            margin-top: 23px;
+            margin-left: -230px;
+            display: block;
+            font-size: 11px;
+            font-family: Tahoma, Arial;
+            font-weight: 700;
+            padding-top: 2px;
+            background-image: url("img/arrow_left.png");
+            background-repeat: no-repeat;
+            position: absolute;
+        }
+
+        .olControlSwipeLayerSpan {
+            visibility: hidden;
+            font-size: 11px;
+            font-family: Tahoma, Arial;
+            font-weight: 700;
+            white-space: pre;
+            position: absolute;
+        }
+
+        .olControlSwipeLayerHide {
+            display: none;
+        }
+
+        .olControlArrowLeft {
+            width: 32px;
+            height: 32px;
+            margin-left: -24px;
+            background-image: url("img/arrow_left.png");
+            background-repeat: no-repeat;
+            position: absolute;
+        }
+
+        .olControlArrowRight {
+            width: 32px;
+            height: 32px;
+            margin-left: -3px;
+            background-image: url("img/arrow_right.png");
+            background-repeat: no-repeat;
+            position: absolute;
+        }
+    </style>
+    <script>
+        var l1 = new OpenLayers.Layer.WMTS({
+            name: "地理底图",
+            url: "http://t0.tianditu.com/vec_c/wmts",
+            layer: "vec",
+            style: "default",
+            matrixSet: "c",
+            format: "tiles",
+            isBaseLayer: true
+        });
+        var l2 = new OpenLayers.Layer.WMTS({
+            name: "标注",
+            url: "http://t0.tianditu.com/cva_c/wmts",
+            layer: "cva",
+            style: "default",
+            matrixSet: "c",
+            format: "tiles",
+            isBaseLayer: false
+        });
+        var map = new OpenLayers.Map({
+            div: "map",
+            layers: [l1, l2],
+            projection: "EPSG:4326",
+            numZoomLevels: 20,
+            center: [101.33869, 35.98203],
+            zoom: 4
+        });
+        var swipe = new OpenLayers.Control.Swipe({ map: map });
+        map.addControl(swipe);
+        swipe.activate(l2);
+    </script>
+</body>
+
+</html>
